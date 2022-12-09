@@ -1,5 +1,16 @@
+
+# constants
+SCISSOR = "scissor"
+ROCK = "rock"
+PAPER = "paper"
+
+# tuple of options
+game_choice = (ROCK,PAPER,SCISSOR)
+
+
 player1_name = input("Enter player 1 name: ")
 player2_name = input("Enter player 2 name: ")
+
 
 player1_score = 0
 player2_score = 0
@@ -11,22 +22,22 @@ for i in range(5):
 
     if player1_choice == player2_choice:
         pass
-    elif player1_choice == "rock":
-        if player2_choice == "scissors":
-            player1_score = player1_score + 1
+    elif player1_choice == ROCK:
+        if player2_choice == SCISSOR:
+            player1_score += 1
         else:
-            player2_score = player2_score +1
-    elif player1_choice == "scissors":
-        if player2_choice == "paper":
-            player1_score = player1_score + 1
+            player2_score += 1
+    elif player1_choice == SCISSOR:
+        if player2_choice == PAPER:
+            player1_score += 1
         else:
-            player2_score = player2_score +1
-    elif player1_choice == "paper": 
-        if player2_choice == "rock":
-            player1_score = player1_score + 1
+            player2_score += 1
+    elif player1_choice == PAPER: 
+        if player2_choice == ROCK:
+            player1_score += 1
             print(player1_score)
         else:
-            player2_score = player2_score +1
+            player2_score += 1
     else:
         print("Invalid play")
     
