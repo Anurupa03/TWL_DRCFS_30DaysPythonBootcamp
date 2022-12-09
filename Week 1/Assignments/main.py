@@ -27,6 +27,8 @@ for i in range(5):
             print(player1_score)
         else:
             player2_score = player2_score +1
+    else:
+        print("Invalid play")
     
 
 print(f'{player1_name} score is : {player1_score}')
