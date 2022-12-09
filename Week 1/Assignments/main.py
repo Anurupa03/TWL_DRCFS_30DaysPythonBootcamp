@@ -4,13 +4,8 @@ SCISSOR = "scissor"
 ROCK = "rock"
 PAPER = "paper"
 
-# tuple of options
-game_choice = (ROCK,PAPER,SCISSOR)
-
-
 player1_name = input("Enter player 1 name: ")
 player2_name = input("Enter player 2 name: ")
-
 
 player1_score = 0
 player2_score = 0
