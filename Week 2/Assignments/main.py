@@ -236,8 +236,6 @@ def main():
         elif inp == 3:
             print("This program is courtesy of: Anurupa ")
             break
-        elif inp == 4:
-            print(rank('w55au43wu'))
         else:
             print("Please enter the right option")
         print('-'*40)
