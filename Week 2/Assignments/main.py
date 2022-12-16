@@ -164,21 +164,25 @@ def option2():
         Lalphabets = string.ascii_lowercase
         chars = string.punctuation
         digits = string.digits
-        pwd = []
+        pwd = ''
         # Hint: user random.choice to select a random Upperalphabet(Ualphabet), Lalphabet, chars, and digits. Join then all together in pwd and check ranking
         # While the required ranking is not met continue joining new Ualphabet, Lalphabet, chars and digits.
         
         ## START CODE HERE
 
-        characterList = Ualphabets+Lalphabets+chars+digits
-        for _ in range(11):
+        uppercase_list = random.sample(Ualphabets,5)
+        lowercase_list = random.sample(Lalphabets,5)
+        digits_list = random.sample(digits,5)
+        special_characters_list = random.sample(chars,5)
 
-            # choose random character from characterList
-            pwd.append(random.choice(characterList))
+        characterList = uppercase_list+lowercase_list+digits_list+special_characters_list
+    
+        random.shuffle(characterList)
         
+        pwd = "".join(characterList)
         ## END CODE HERE
 
-        return "".join(pwd)
+        return pwd
     
     # Ask for username and check 20 character limits
 
@@ -199,7 +203,7 @@ def option2():
         user_password = generate()
         print(f'Here is the auto generated password: {user_password}.')
 
-        user_confirmation = input('Do you want to save it: y/n')
+        user_confirmation = input('Do you want to save it: y/n ')
 
         if user_confirmation.lower() == "y":
 
