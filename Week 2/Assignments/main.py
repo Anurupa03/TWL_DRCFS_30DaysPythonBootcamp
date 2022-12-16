@@ -3,6 +3,13 @@
 import random
 import string 
 
+# helper function
+def check_user_name_length(name: str):
+    if len(name)>20:
+        raise  LengthError("Username is greater than 20 characters",name,len(name))
+
+class LengthError(Exception):
+    pass
 
 def rank(pwd: str) -> str:
     '''
@@ -120,8 +127,10 @@ def option2():
 
     ## START CODE HERE
     user_name = input("Enter your name:")
-    if len(user_name)>20:
-        print("The username is greater than 20 characters. Please enter it again")
+    try:
+        check_user_name_length(user_name)
+    except LengthError as err:
+        print(err)
         option2()
 
 
@@ -151,6 +160,8 @@ def option2():
 
 
     ## END CODE HERE
+
+
 
 def main():
 
