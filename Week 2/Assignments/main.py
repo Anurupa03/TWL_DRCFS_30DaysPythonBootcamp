@@ -19,92 +19,24 @@ def rank(pwd: str) -> str:
     symbols = ("!", "+", "-", "=", "?", "#", "%", "*", "@", "&", "^", "$", "'")
     rank=""
 
-    length = ""
+    contains_number = any(character.isdigit() for character in pwd)
+    contains_symbol = any(character in symbols for character in pwd)
+    lower_case = any(char in string.ascii_lowercase for char in pwd)
+    upper_case = any(char in string.ascii_uppercase for char in pwd)  
 
-    if len(pwd) > 10 :
-        length = "S"
-    elif len(pwd) > 8 and len(pwd) <= 10:
-        length = "M"
-    else:
-        length ="P"
+    condition_list =(contains_number,contains_symbol,lower_case,upper_case)
 
-    contains_number = [character.isdigit() for character in pwd]
-    contains_symbol = [character in symbols for character in pwd]
-    lower_case = [string.ascii_lowercase.__contains__(character) for character in pwd]
-    upper_case = [string.ascii_uppercase.__contains__(character) for character in pwd]  
-
-    # pwd has -> lowecase, uppercase, number, symbol
-    if any(lower_case) and any(upper_case) and any(contains_number) and any(contains_symbol):
-        if length == "S":
-            rank = STRONG
-        elif length == "M":
-            rank = MODERATE
-        else:
-            rank = POOR
-    
-    # pwd has -> (lowecase only), or (uppercase only ), or (number only), or (symbol only)
-    if all(lower_case) or all(upper_case) or all(contains_number) or all(contains_symbol):
+    counter = 0
+    for condition in condition_list:
+        if condition is True:
+            counter += 1
+            print(counter)
+    if counter < 3 or len(pwd) < 8:
         rank = POOR
-
-    # pwd has -> (lowercase, uppercase, number) or (lowercase, uppercase, symbol)
-    elif any(lower_case) and any(upper_case):
-        if any(contains_number) or any(contains_symbol):
-            if length == "P":
-                rank = POOR
-            else:
-                rank = MODERATE
-        else:
-            rank = POOR
-    
-    # pwd has -> (lowercase, number, uppercase) or (lowercase,number,symbol)
-    elif any(lower_case) and any(contains_number):
-        if any(upper_case) or any(contains_symbol):
-            if length == "P":
-                rank = POOR
-            else:
-                rank = MODERATE
-        else:
-            rank = POOR
-    
-    # pwd has -> (lowecase,symbol,uppercase) or (lowercase,symbol,number)
-    elif any(lower_case) and any(contains_symbol):
-        if any(upper_case) or any(contains_number):
-            if length == "P":
-                rank = POOR
-            else:
-                rank = MODERATE
-        else:
-            rank = POOR
-    
-    # pwd has -> (uppercase,number,lowercase) or (uppercase,number,symbol)
-    elif any(upper_case) and any(contains_number):
-        if any(lower_case) or any(contains_symbol):
-            if length == "P":
-                rank = POOR
-            else:
-                rank = MODERATE
-        else:
-            rank = POOR
-    
-    # pwd has -> (uppercase,symbol,lowercase) or (uppercase,symbol,number)
-    elif any(upper_case) and any(contains_symbol):
-        if any(lower_case) or any(contains_number):
-            if length == "P":
-                rank = POOR
-            else:
-                rank = MODERATE
-        else:
-            rank = POOR
-    
-    # pwd has -> (number,symbol,lowercase) or (number,symbol,uppercase)
-    elif any(contains_number) and any(contains_symbol):
-        if any(lower_case) or any(upper_case):
-            if length == "P":
-                rank = POOR
-            else:
-                rank = MODERATE
-        else:
-            rank = POOR
+    elif counter < 4 or len(pwd) < 10:
+        rank = MODERATE
+    else:
+        rank = STRONG
 
     ## End code here
     return rank
