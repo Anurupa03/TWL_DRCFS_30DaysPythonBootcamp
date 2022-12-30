@@ -31,6 +31,7 @@ def news_scraper(url:str) -> list:
     for article_title in articles:
         try:
             news.append(article_title.find_all('a')[0].text)
+            news.append(article_title.find_all('a',href=True)[0]['href'])
         except Exception:   
             try:
                 news.append(article_title.find_all('span')[0].text)
@@ -48,16 +49,13 @@ def file_creator(name:str) -> None:
 
 # loop through all the articles and add them on new list
 def news_artilces_saver(filename:str):
-    sn=0
     articles=news_scraper(url)
     file_creator(filename)
-    for title in articles:
-        print(title)
+    for id,title in enumerate(articles):
         file=open(filename,'a')
-        file.write(f"{sn}  {title}")
+        file.write(f"{id}  {title}")
         file.write("\n")
         file.close()
-        sn+=1
 
     
     # append the value of sn for indexing
